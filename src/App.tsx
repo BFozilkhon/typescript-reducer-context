@@ -1,26 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useContext } from 'react';
+import { CounterContext } from './context/CounterContext';
 
-function App() {
+export const App = () => {
+  const { state, increment, decrement, inputTextChanger } =
+    useContext(CounterContext);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button onClick={() => increment()}>+</button>
+      {state?.count}
+      <button onClick={() => decrement()}>-</button>
+      <input onChange={(e) => inputTextChanger(e)} type='text' />
+      <p>{state?.text}</p>
     </div>
   );
-}
+};
 
 export default App;
